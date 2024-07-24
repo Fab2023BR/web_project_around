@@ -29,7 +29,6 @@
   
   .profile-info__name{
     color: #FFFFFF;
-    width: 373px;
     font-family: "Inter";
     font-size: 42px;
     font-weight: 500;
@@ -45,17 +44,14 @@
   }
   
   .profile-info__button{
-    width: 24px;
-    height: 24px;
-    border: 1px solid #FFFFFF;
     margin-left: 18px;
     margin-top: 6px;
   }
   
   .profile-info__button-pen{
     padding: 7px;
-    width: 10px;
-    height: 10px;
+    width: 24px;
+    height: 24px;
     cursor: pointer;
   }
   
