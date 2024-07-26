@@ -7,5 +7,5 @@ A interface foi desenvolvida seguindo o design proposto no Figma.
 
 Utilizamos várias tecnologias para construir o projeto, como Media Query para garantir a responsividade em diferentes tamanhos de tela, CSS Grid para organizar as fotos em um layout de grade, HTML e CSS para a construção e estilização do site, e JavaScript para permitir que os usuários alterem seus dados. Ao clicar no botão "editar", um popup se abre para facilitar essas modificações.
 
-Link para o Github: https://github.com/Fab2023BR/web_project_around.git
+Link para o Github: https://fab2023br.github.io/web_project_around/
 
