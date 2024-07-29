@@ -7,3 +7,15 @@
 @import url("../blocks/element.css");
 @import url("../blocks/popup.css");
 @import url("../blocks/footer.css");
+@import url(../blocks/popupEditProfile.css);
+@import url(../blocks/popupAddCard.css);
+
+.body {
+    display: block;
+    margin: auto;
+    max-width: 1280px;
+    font-family: "Inter", sans-serif;
+  }
+  :root {
+    background-color: black;
+  }

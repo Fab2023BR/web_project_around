@@ -1,195 +1,87 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
   <head>
-    <meta charset="UTF-8" >
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta
-      name="description"
-      content="Around the US é uma rede social onde se compartilha experiências através das fotografias"
-    />
-    <meta name="keywords" content="ao redor dos EUA, rede social">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Around the US é uma rede social onde se compartilha experiências através das fotografias" />
+    <meta name="keywords" content="ao redor dos EUA, rede social" />
     <title>Around the U.S</title>
-    <link rel="stylesheet" type="text/css" href="./pages/index.css">
+    <link rel="stylesheet" href="./pages/index.css" />
     <meta name="author" content="Fabiana Storer">
   </head>
   <body>
-    <div class="page">
-      <!--header profile-->
+    <div class="body">
       <header class="header">
-        <h1 class="header__title">
-          Around<span class="header__title-span">The U.S.</span>
-        </h1>
+        <img class="logo" src="./images/logo.png" alt="logo around the U.S" />
+        <hr class="header__line" />
       </header>
-
-      <main class="content">
+      <main class="main">
         <section class="profile">
           <img
-            src="./images/image.png"
-            alt="Foto de Jacques Cousteau"
             class="profile__avatar"
+            src="./images/profile-img.png"
+            alt="foto do perfil"
           />
-          <div class="profile-info">
-            <div class="profile-info__header">
-              <h2 class="profile-info__name">Jacques Cousteau</h2>
-              <div class="profile-info__button" id="edit-button">
-                <img
-                  src="./images/pen.svg"
-                  alt="caneta"
-                  class="profile-info__button-pen"
-                />
-              </div>
-            </div>
-            <p class="profile-info__explore">Explorador</p>
+          <div class="profile__info">
+            <h1 class="profile__name">Jacques Cousteau</h1>
+            <button type="button" class="profile__edit-button"></button>
+            <h3 class="profile__about">Explorador</h3>
           </div>
-          <div class="profile__button-add">
-            <img
-              src="./images/plus.png"
-              alt="adicionar"
-              class="profile__button-add-icon"
-            />
-          </div>
+          <button class="profile__add-button"></button>
         </section>
-        <!--seção pop up-->
-        <section class="popup">
-          <div class="popup__overlay"></div>
-          <div>
-            <form class="popup__form">
-              <fieldset class="popup__fieldset">
-                <button
-                  type="button"
-                  class="popup__close-button"
-                  id="close-button"
-                >
-                  <img
-                    src="./images/close_icon.svg"
-                    alt="Botão fechar"
-                    class="popup__close-icon"
-                  >
-                </button>
-                <h2 class="popup__title">Editar perfil</h2>
-                <input
-                  type="text"
-                  class="popup__input"
-                  placeholder="Nome"
-                  id="name"
-                  required
-                >
-
-                <input
-                  type="text"
-                  class="popup__input"
-                  placeholder="Sobre mim"
-                  id="about"
-                  required
-                >
-              </fieldset>
-              <button class="popup__save-button" type="submit">Salvar</button>
+        <section class="elements"></section>
+        <section class="popup popup-edit">
+          <div class="popup-edit__container">
+            <form class="popup-edit__form">
+              <button class="popup-edit__close-button"></button>
+              <h2 class="popup-edit__title">Editar perfil</h2>
+              <input
+                class="popup-edit__input-title"
+                placeholder="Título"
+                type="text"
+                name="name"
+              />
+              <input
+                class="popup-edit__input-about"
+                placeholder="Sobre mim"
+                type="text"
+                name="image"
+              />
+              <button type="submit" class="popup-edit__save-button">
+                Salvar
+              </button>
             </form>
           </div>
         </section>
-        <!--section cards-->
-        <section class="element">
-          <div class="element-card">
-            <img
-              class="element-card__image"
-              src="./images/foto_yosemite.jpg"
-              alt="Foto do vale de Yosemite"
-            >
-            <div class="element-card__content">
-              <h2 class="element-card__title">Vale de Yosemite</h2>
-              <img
-                src="./images/heart.svg"
-                alt="botão de like"
-                class="element-card__heart"
-              >
-            </div>
-          </div>
-
-          <div class="element-card">
-            <img
-              class="element-card__image"
-              src="./images/foto_louise.jpg"
-              alt="Foto do Lago Louise"
-            >
-            <div class="element-card__content">
-              <h2 class="element-card__title">Lago Louise</h2>
-              <img
-                src="./images/heart.svg"
-                alt="botão de like"
-                class="element-card__heart"
-              >
-            </div>
-          </div>
-
-          <div class="element-card">
-            <img
-              class="element-card__image"
-              src="./images/foto_montanha.jpg"
-              alt=" Foto das Montanhas "
-            >
-            <div class="element-card__content">
-              <h2 class="element-card__title">Montanhas Carecas</h2>
-              <img
-                src="./images/heart.svg"
-                alt="botão de like"
-                class="element-card__heart"
-              >
-            </div>
-          </div>
-
-          <div class="element-card">
-            <img
-              class="element-card__image"
-              src="./images/foto_latemar.jpg"
-              alt="Foto de Latemar"
-            >
-            <div class="element-card__content">
-              <h2 class="element-card__title">Latemar</h2>
-              <img
-                src="./images/heart.svg"
-                alt="botão de like"
-                class="element-card__heart"
-              >
-            </div>
-          </div>
-
-          <div class="element-card">
-            <img
-              class="element-card__image"
-              src="./images/foto_vanoise.jpg"
-              alt="Foto do Vanoise National Park"
-            >
-            <div class="element-card__content">
-              <h2 class="element-card__title">Vanoise National Park</h2>
-              <img
-                src="./images/heart.svg"
-                alt="botão de like"
-                class="element-card__heart"
-              >
-            </div>
-          </div>
-          <div class="element-card">
-            <img
-              class="element-card__image"
-              src="./images/foto_braies.jpg"
-              alt="Foto do Lago di Braies"
-            >
-            <div class="element-card__content">
-              <h2 class="element-card__title">Lago di Braies</h2>
-              <img
-                src="./images/heart.svg"
-                alt="botão de like"
-                class="element-card__heart"
-              >
-            </div>
+        <section class="popup popup-addCard">
+          <div class="popup-addCard__container">
+            <form class="popup-addCard__form">
+              <button class="popup-addCard__close-button"></button>
+              <h2 class="popup-addCard__title">Novo local</h2>
+              <input
+                class="popup-addCard__input-title"
+                placeholder="Título"
+                type="text"
+                name="name"
+              />
+              <input
+                class="popup-addCard__input-image"
+                placeholder="Link de imagem"
+                type="text"
+                name="image"
+              />
+              <button type="button" class="popup-addCard__save-button">
+                Salvar
+              </button>
+            </form>
           </div>
         </section>
+        <section class="popup popup-image"></section>
       </main>
-      <!--footer-->
       <footer class="footer">
-        <p class="footer__copyright">&copy; 2024 Around The U.S.</p>
+        <p class="footer__signature">© 2024 Around The U.S.</p>
       </footer>
+      <script src="scripts/index.js"></script>
     </div>
-    <script src="./scripts/index.js"></script>
   </body>
 </html>
