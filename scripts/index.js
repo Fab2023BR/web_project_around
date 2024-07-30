@@ -68,24 +68,67 @@ const initialCards = [
   },
 ];
 
-document.addEventListener("DOMContentLoaded", function () {
-  initialCards.forEach(function (card) {
-    const newCard = document.createElement("div");
-    newCard.classList.add("element");
+function generateCard(card) {
+  const template = document
+    .querySelector("#template")
+    .content.querySelector(".elements__card");
 
-    newCard.innerHTML = `
-    <button type="button" class="element__close-button"></button>
-    <img class="element__image" src="${card.link}" alt="${card.name}" />
-    <h2 class="element__info">
-      <span class="element__title">${card.name}</span>
-      <button type="submit" class="element__like-button"></button>
-    </h2>
-  `;
+  const currentCard = template.cloneNode(true);
 
-    cards.append(newCard);
-    cards_events();
-  });
-});
+  currentCard.querySelector(".elements__card-name").textContent = card.name;
+
+  currentCard.querySelector(".elements__card-image").setAttribute("src", card.link);
+
+  currentCard.querySelector(".elements__card-image").setAttribute("alt", `imagem do lugar ${card.name}`);
+
+  currentCard
+    .querySelector(".elements__delete-icon")
+    .addEventListener("click", (evt) => {
+      const elements = document.querySelector(".elements");
+      const card = evt.target.offsetParent;
+
+      elements.removeChild(card);
+    });
+
+  currentCard
+    .querySelector(".elements__like-icon")
+    .addEventListener("click", (evt) => {
+      if (evt.target.getAttribute("src") === "./images/like-inative.png") {
+        return evt.target.setAttribute(
+          "src",
+          "./images/like-active.png"
+        );
+      }
+
+      return evt.target.setAttribute("src", "./images/like-inative.png");
+    });
+
+    return currentCard;
+}
+
+initialCards.forEach(card => {
+  const cardItem = generateCard(card);
+  cards.append(cardItem);
+})
+
+// document.addEventListener("DOMContentLoaded", function () {
+//   initialCards.forEach(function (card) {
+//     const newCard = document.createElement("div");
+//     newCard.classList.add("element");
+
+//     newCard.innerHTML = `
+//     <button type="button" class="element__close-button"></button>
+//     <img class="element__image" src="${card.link}" alt="${card.name}" />
+//     <h2 class="element__info">
+//       <span class="element__title">${card.name}</span>
+//       <button type="submit" class="element__like-button"></button>
+//     </h2>
+//   `;
+
+//     cards.append(newCard);
+//     cards_events();
+//   });
+// });
 
 addCardButton.addEventListener("click", function () {
   popupAddCard.classList.add("popup_opened");

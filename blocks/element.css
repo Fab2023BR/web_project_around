@@ -7,7 +7,7 @@
     grid-template-columns: 1fr 1fr 1fr;
   }
   
-  .element {
+  .elements__card {
     position: relative;
     width: 100%;
     display: flex;
@@ -16,14 +16,14 @@
     background-color: white;
   }
   
-  .element__image {
+  .elements__card-image {
     width: 100%;
     height: 17.625rem;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
   }
   
-  .element__info {
+  .elements__container-text-and-like-button {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -37,7 +37,7 @@
     line-height: normal;
   }
   
-  .element__title {
+  .elements__card-name {
     max-width: 205px;
     white-space: nowrap;
     overflow: hidden;
@@ -62,19 +62,17 @@
     background-image: url(../images/like-active.png);
   }
   
-  .element__close-button {
+  .elements__delete-button {
     position: absolute;
     top: 1.3rem;
     right: 0.94rem;
-    background-image: url(../images/Trash.png);
     width: 1.125rem;
     height: 1.20625rem;
-    background-repeat: no-repeat;
     border: 0;
     background-color: transparent;
   }
   
-  .element__close-button:hover {
+  .elements__delete-button:hover {
     background-image: url(../images/TrashHover.png);
     cursor: pointer;
   }
@@ -86,7 +84,7 @@
     .elements {
       grid-template-columns: 1fr;
     }
-    .element {
+    .elements__card {
       width: 17.625rem;
       height: 22.5625rem;
       display: flex;

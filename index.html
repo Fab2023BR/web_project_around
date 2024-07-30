@@ -29,7 +29,22 @@
           </div>
           <button class="profile__add-button"></button>
         </section>
-        <section class="elements"></section>
+        <section class="elements">
+          <template id="template">
+            <div class="elements__card">
+              <button class="elements__delete-button">
+                <img src="./images/Trash.png" alt="icone de lixeira" class="elements__delete-icon">
+              </button>
+              <img src="#" alt="" class="elements__card-image">
+              <div class="elements__container-text-and-like-button">
+                <p class="elements__card-name"></p>
+                <button class="elements__like-button">
+                  <img src="./images/like-inative.png" alt="icone de like" class="elements__like-icon">
+                </button>
+              </div>
+            </div>
+          </template>
+        </section>
         <section class="popup popup-edit">
           <div class="popup-edit__container">
             <form class="popup-edit__form">
