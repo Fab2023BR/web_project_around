@@ -28,7 +28,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 1.56rem 0.94rem 1.64rem 1.31rem;
+    margin: 0 0.94rem; 
     color: #000;
     font-family: Inter;
     font-size: 1.5rem;
@@ -44,25 +44,15 @@
     text-overflow: ellipsis;
   }
   
-  .element__like-button {
-    width: 100%;
-    width: 1.3125rem;
-    height: 1.1875rem;
-    background-image: url(../images/like-inative.png);
-    border: none;
-    background-color: transparent;
+  .elements__like-icon {
     cursor: pointer;
   }
   
-  .element__like-button:hover {
+  .elements__like-icon:hover {
     opacity: 0.6;
   }
   
-  .like-button_active {
-    background-image: url(../images/like-active.png);
-  }
-  
-  .elements__delete-button {
+  .elements__delete-icon {
     position: absolute;
     top: 1.3rem;
     right: 0.94rem;
@@ -72,8 +62,7 @@
     background-color: transparent;
   }
   
-  .elements__delete-button:hover {
-    background-image: url(../images/TrashHover.png);
+  .elements__delete-icon:hover {
     cursor: pointer;
   }
   

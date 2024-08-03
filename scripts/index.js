@@ -111,52 +111,27 @@ initialCards.forEach(card => {
   cards.append(cardItem);
 })
 
-// document.addEventListener("DOMContentLoaded", function () {
-//   initialCards.forEach(function (card) {
-//     const newCard = document.createElement("div");
-//     newCard.classList.add("element");
-
-//     newCard.innerHTML = `
-//     <button type="button" class="element__close-button"></button>
-//     <img class="element__image" src="${card.link}" alt="${card.name}" />
-//     <h2 class="element__info">
-//       <span class="element__title">${card.name}</span>
-//       <button type="submit" class="element__like-button"></button>
-//     </h2>
-//   `;
-
-//     cards.append(newCard);
-//     cards_events();
-//   });
-// });
-
 addCardButton.addEventListener("click", function () {
   popupAddCard.classList.add("popup_opened");
 });
 
-addCardSaveButton.addEventListener("click", function (evt) {
+addForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
 
   const titulo = addCardTitulo.value.trim();
   const imagem = addCardImage.value.trim();
 
   if (titulo && imagem) {
-    const newCard = document.createElement("div");
-    newCard.classList.add("element");
+    const newCardObj = {
+      name: titulo,
+      link: imagem
+    };
 
-    newCard.innerHTML = `
-      <button type="button" class="element__close-button"></button>
-      <img class="element__image" src="${imagem}" alt="${titulo}" />
-      <h2 class="element__info">
-        <span class="element__title">${titulo}</span>
-        <button type="submit" class="element__like-button"></button>
-      </h2>
-    `;
+    const newCard = generateCard(newCardObj);
 
     cards.prepend(newCard);
     addForm.reset();
     popupAddCard.classList.remove("popup_opened");
-    cards_events();
   } else {
     alert("Please, fill all inputs");
   }
@@ -166,26 +141,3 @@ popupAddCardCloseButton.addEventListener("click", function (evt) {
   evt.preventDefault();
   popupAddCard.classList.remove("popup_opened");
 });
-
-function cards_events() {
-  const likeButtons = document.querySelectorAll(".element__like-button");
-
-  const removeButton = document.querySelectorAll(".element__close-button");
-
-  likeButtons.forEach(function (button) {
-    button.addEventListener("click", function () {
-      if (button.classList.contains("like-button_active")) {
-        button.classList.remove("like-button_active");
-      } else {
-        button.classList.add("like-button_active");
-      }
-    });
-  });
-
-  removeButton.forEach(function (button) {
-    button.addEventListener("click", function () {
-      const card = button.closest(".element");
-      card.classList.add("removeButton");
-    });
-  });
-}
