@@ -9,18 +9,21 @@
     <meta name="author" content="Fabiana Storer">
   </head>
   <body>
-    <div class="  page">
+    <div class="page">
       <header class="header">
         <img class="logo" src="<%=require('./images/logo.png')%>" alt="logo around the U.S" />
         <hr class="header__line" />
       </header>
       <main class="main">
         <section class="profile">
-          <img
-            class="profile__avatar"
-            src="<%=require('./images/profile-img.png')%>"
-            alt="foto do perfil"
-          />
+          <div class="profile__avatar-and-edit-pen-container">
+            <img
+              class="profile__avatar"
+              src="<%=require('./images/profile-img.png')%>"
+              alt="foto do perfil"
+            />
+            <button type="button" class="profile__edit-button-avatar"></button>
+          </div>
           <div class="profile__info">
             <div class="profile__title-and-button">
               <h1 class="profile__name">Jacques Cousteau</h1>
@@ -37,11 +40,35 @@
               <img src="" alt="" class="elements__card-image">
               <div class="elements__container-text-and-like-button">
                 <p class="elements__card-name"></p>
-                  <img src="<%=require('./images/like-inative.png')%>" alt="icone de like" class="elements__like-icon">
+                <div class="elements__like-container">
+                  <button class="elements__like-icon"></button>
+                  <span class="elements__like-count">0</span> 
+                </div>
               </div>
             </div>
           </template>
         </section>
+
+        <!--Edicao do Avatar -->
+        <section class="popup popup-edit-avatar">
+          <div class="popup__container popup__container_avatar">
+            <button class="popup__close-button popup-edit-avatar__close-button"></button>
+            <h2 class="popup__title">Alterar a foto do perfil</h2>
+            <form class="popup__form popup-edit-avatar__form">
+              <div>
+                <input
+                  id="avatar-link"
+                  class="popup__input popup-edit-avatar__input"
+                  placeholder="Link da imagem do avatar"
+                  type="url"
+                  name="avatar"
+                />
+                <span class="error-message" id="avatar-link-error"></span>
+              </div>
+              <button type="submit" class="popup__save-button popup-edit-avatar__save-button">Salvar</button>
+            </form>
+          </div>
+        </section>        
         
         <!-- Seção do Formulário "Editar perfil" -->
         <section class="popup popup-edit">
@@ -133,8 +160,13 @@
             </div>
           </div>
         </div>
-
-          
+        <div class="popup popup-confirm-delete">
+          <div class="popup__container popup__container-confirm">
+            <button class="popup__close-button popup-confirm-delete__close-button"></button>
+            <h2 class="popup__title">Tem certeza?</h2>
+            <button type="button" class="popup__save-button popup-confirm-delete__save-button">Sim</button>
+          </div>
+        </div>
       </main>
       <footer class="footer">
         <p class="footer__signature">© 2024 Around The U.S.</p>

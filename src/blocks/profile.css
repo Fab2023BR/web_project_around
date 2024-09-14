@@ -4,11 +4,38 @@
   margin: 44.96px auto;
 }
 
+.profile__avatar-and-edit-pen-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 30px;
+}
+
 .profile__avatar {
-  width: 168.95px;
-  height: auto;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   margin-right: 29.92px;
+}
+
+.profile__edit-button-avatar {
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  top: 0;
+  background-color: transparent;
+}
+
+.profile__edit-button-avatar:hover {
+  background-image: url(../images/Profile_Avatar.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .profile__info {

@@ -5,58 +5,54 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js"
+const api = new Api({
+  baseURL: "https://around.nomoreparties.co/v1/web-ptbr-cohort-11",
+  headers: {
+    authorization: "e1bf077e-1f40-49ae-b399-5969495a1c96",
+    "Content-Type": "application/json"
+  }
+});
+import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 
-const list = document.querySelector(".elements")
-
-const initialCards = [
-  {
-    name: "Vale de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
-  },
-  {
-    name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
-  },
-  {
-    name: "Montanhas Carecas",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg",
-  },
-  {
-    name: "Parque Nacional da Vanoise ",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
-  },
-];
+const popupWithConfirmation = new PopupWithConfirmation(".popup-confirm-delete", api.deleteCard.bind(api));
+popupWithConfirmation.setEventListeners();
+const popupWithConfirmationCloseButton = document.querySelector('.popup-confirm-delete__close-button');
+popupWithConfirmationCloseButton.addEventListener('click', () => popupWithConfirmation.close());
 
 const popupImage = new PopupWithImage(".popup-view-image");
+
+const userInfo = new UserInfo({
+  nameSelector: ".profile__name",
+  aboutSelector: ".profile__about",
+  avatarSelector: ".profile__avatar",
+});
+
+let userData = {}
+
+api.getUserInfo().then(user => {
+  userData = user;
+  userInfo.setUserInfo({ name: user.name, about: user.about });
+  userInfo.setAvatar(user);
+})
 
 function handleCardClick(name, link) {
   popupImage.open({ name, link });
 }
 
-const section = new Section({
-    items: initialCards,
+api.getCards().then(cards => {
+  const section = new Section({
+    items: cards,
     renderer: (cardData) => {
-      const cardElement = new Card({ title: cardData.name, link: cardData.link }, "#template", handleCardClick).generateCard();
+      const cardElement = new Card({ title: cardData.name, link: cardData.link, ownerId: cardData.owner._id ,likes: cardData.likes, id: cardData._id, userId: userData._id }, "#template", handleCardClick, api.addLike.bind(api), api.removeLike.bind(api), (cardId, card) => popupWithConfirmation.open(cardId, card)).generateCard();
       section.addItem(cardElement);  
     }
-},
-".elements"
-);
+  },
+  ".elements"
+  );
 
-section.renderItems();
-
-const userInfo = new UserInfo({
-  nameSelector: ".profile__name",
-  aboutSelector: ".profile__about"
-});
+  section.renderItems();
+})
 
 document.querySelector(".profile__edit-button").addEventListener("click", () => {
   const user = userInfo.getUserInfo();
@@ -67,12 +63,8 @@ document.querySelector(".profile__edit-button").addEventListener("click", () => 
 
 function handleProfileFormSubmit({ name, about }) {
   userInfo.setUserInfo({ name, about });
+  api.editUserInfo({ name, about });
 }
-
-// for (const card of initialCards) {
-//   const cardElement = new Card({ title: card.name, link: card.link }, "#template", handleCardClick).generateCard()
-//   list.prepend(cardElement)
-// }
 
 //edit profile
 const editButton = document.querySelector(".profile__edit-button");
@@ -88,6 +80,11 @@ const cards = document.querySelector(".elements");
 const addForm = document.querySelector(".popup-addCard__form");
 const addCardButton = document.querySelector(".profile__add-button");
 const popupAddCardCloseButton = document.querySelector(".popup-addCard__close-button");
+
+//Avatar
+const openPopupAvatar = document.querySelector(".profile__edit-button-avatar");
+const closePopupAvatar = document.querySelector(".popup-edit-avatar__close-button");
+const avatarForm = document.querySelector(".popup-edit-avatar__form")
 
 // Função de validação dos inputs do perfil
 const config = {
@@ -108,13 +105,29 @@ const editCard = new FormValidation(
     )
     editCard.enableValidation();
 
-  // function handleProfileFormSubmit(inputs) {
-  //   profileName.textContent = inputs.name;
-  //   profileAbout.textContent = inputs.about;
-  // }
+const editAvatarFormValidation = new FormValidation(
+  config, avatarForm, 
+  )
+  editAvatarFormValidation.enableValidation();
 
 const popupEditProfile = new PopupWithForm(".popup-edit", handleProfileFormSubmit);
 popupEditProfile.setEventListeners();
+
+function handleProfileAvatarFormSubmit({ avatar }) {
+  userInfo.setAvatar({ avatar });
+  api.editAvatar({ avatar });
+}
+
+const popupEditAvatar = new PopupWithForm(".popup-edit-avatar", handleProfileAvatarFormSubmit);
+popupEditAvatar.setEventListeners();
+
+closePopupAvatar.addEventListener("click", function () {
+  popupEditAvatar.close();
+});
+
+openPopupAvatar.addEventListener("click", function () {
+  popupEditAvatar.open();
+});
 
 editButton.addEventListener("click", function () {
   popupEditProfile.open();
@@ -132,8 +145,20 @@ function submitFormCard(inputs) {
       link: imagem
     };
 
-    const newCard = new Card(newCardObj, "#template", handleCardClick).generateCard()
-    section.addItem(newCard);  
+    api.createCard(newCardObj).then(cards => {
+      const section = new Section({
+        items: [cards],
+        renderer: (cardData) => {
+          const cardElement = new Card({ title: cardData.name, link: cardData.link, ownerId: cardData.owner._id ,likes: cardData.likes, id: cardData._id, userId: userData._id }, "#template", handleCardClick, api.addLike.bind(api), api.removeLike.bind(api), (cardId, card) => popupWithConfirmation.open(cardId, card)).generateCard();
+          section.addItem(cardElement);  
+        }
+      },
+      ".elements"
+      );
+    
+      section.renderItems();
+    })
+    
     addForm.reset();
   } 
 };

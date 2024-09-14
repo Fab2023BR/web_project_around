@@ -131,6 +131,18 @@
   .popup__save-button:hover {
     opacity: 0.6;
   }
+
+  .popup__container-confirm {
+    height: 181px;
+  }
+
+  .popup-confirm-delete__save-button {
+    margin-top: 38px;
+  }
+
+  .popup__container_avatar {
+    max-height: 272px;
+  }
   
   @media screen and (max-width: 544px) {
     .popup__close-button {
@@ -141,4 +153,5 @@
     .popup__container {
       width: 70%;
     }
+
   }

@@ -45,8 +45,19 @@
   
   .elements__like-icon {
     cursor: pointer;
+    background-image: url(../images/like-inative.png);
+    border: 0;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    width: 21px;
+    height: 19px;
   }
   
+  .elements__like-icon-clicked {
+    background-image: url(../images/like-active.png);
+  }
+
   .elements__like-icon:hover {
     opacity: 0.6;
   }
@@ -64,10 +75,18 @@
   .elements__delete-icon:hover {
     cursor: pointer;
   }
-  
-  .removeButton {
-    display: none !important;
+
+  .elements__like-container {
+    display: flex;
+    flex-direction: column;
   }
+
+  .elements__like-count {
+    font-size: 14px;
+    color: #333;
+    margin-left: 8px;
+  }
+
   @media screen and (max-width: 1024px) {
     .elements {
       max-width: 580px;
