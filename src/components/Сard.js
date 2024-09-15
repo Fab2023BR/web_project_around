@@ -7,7 +7,7 @@ export default class Card {
     removeLike,
     openConfirmation
   ) {
-    this._titleInterno = title;
+    this._internalTitle = title;
     this._urlInterno = link;
     this._template = templateSelector;
     this._handleCardClick = handleCardClick;
@@ -45,17 +45,17 @@ export default class Card {
     this._element.setAttribute("id", this._id);
     this._element.setAttribute("ownerId", this._ownerId);
     this._element.querySelector(".elements__card-name").textContent =
-      this._titleInterno;
+      this._internalTitle;
     this._element
       .querySelector(".elements__card-image")
       .setAttribute("src", this._urlInterno);
     this._element
       .querySelector(".elements__card-image")
-      .setAttribute("alt", this._titleInterno);
+      .setAttribute("alt", this._internalTitle);
     this._element
       .querySelector(".elements__card-image")
       .addEventListener("click", () => {
-        this._handleCardClick(this._titleInterno, this._urlInterno);
+        this._handleCardClick(this._internalTitle, this._urlInterno);
       });
 
     const deleteIcon = this._element.querySelector(".elements__delete-icon");
@@ -71,7 +71,7 @@ export default class Card {
     this._element
       .querySelector(".elements__card-image")
       .addEventListener("click", () => {
-        this._handleCardClick(this._titleInterno, this._urlInterno);
+        this._handleCardClick(this._internalTitle, this._urlInterno);
       });
 
     this._element
