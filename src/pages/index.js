@@ -31,7 +31,6 @@ const userInfo = new UserInfo({
 let userData = {}
 
 api.getUserInfo().then(user => {
-  userData = user;
   userInfo.setUserInfo({ name: user.name, about: user.about });
   userInfo.setAvatar(user);
 })
