@@ -7,7 +7,7 @@ export default class Card {
     removeLike,
     openConfirmation
   ) {
-    this._internalTitle = title;
+    this._internalTitle = title;    
     this._urlInterno = link;
     this._template = templateSelector;
     this._handleCardClick = handleCardClick;
@@ -26,11 +26,6 @@ export default class Card {
       .content.querySelector(".elements__card")
       .cloneNode(true);
     return template;
-  }
-
-  _setEventListeners() {
-    //   this._element.querySelector(".elements__delete-icon").addEventListener("click", (event)=>{
-    // }
   }
 
   _updateLikes() {
@@ -103,10 +98,8 @@ export default class Card {
       }
     });
 
-    this._setEventListeners();
+    
     this._updateLikes();
-
-    this._setEventListeners();
     return this._element;
   }
 }
