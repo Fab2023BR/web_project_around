@@ -132,6 +132,13 @@
     opacity: 0.6;
   }
 
+  .popup__save_disabled {
+    border: 1px solid #000;
+    opacity: 0.2;
+    background: #fff;
+    color: #000;
+  }
+
   .popup__container-confirm {
     height: 181px;
   }

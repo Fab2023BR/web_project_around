@@ -43,10 +43,10 @@ export default class FormValidation {
   _toggleButtonState() {
       const saveButton = this._formElement.querySelector(".popup__save-button");
       if (this._hasInvalidInput(this._inputList)) {
-        // class para desativar o botão
+        saveButton.classList.add("popup__save_disabled")
         saveButton.setAttribute("disabled", true);
       } else {
-        // class para ativar o botão
+        saveButton.classList.remove("popup__save_disabled")
         saveButton.removeAttribute("disabled");
       }
   }
