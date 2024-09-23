@@ -37,17 +37,18 @@ export default class FormValidation {
   }
 
   _hasInvalidInput(inputList) {
-    return inputList.some((inputElement) => !inputElement.validity.valid);
+    return inputList.some((inputElement) => {
+      return !inputElement.validity.valid
+    });
   }
 
   _toggleButtonState() {
-      const saveButton = this._formElement.querySelector(".popup__save-button");
       if (this._hasInvalidInput(this._inputList)) {
-        saveButton.classList.add("popup__save_disabled")
-        saveButton.setAttribute("disabled", true);
+        this._submitButton.classList.add("popup__save_disabled")
+        this._submitButton.setAttribute("disabled", true);
       } else {
-        saveButton.classList.remove("popup__save_disabled")
-        saveButton.removeAttribute("disabled");
+        this._submitButton.classList.remove("popup__save_disabled")
+        this._submitButton.removeAttribute("disabled");
       }
   }
 
@@ -70,8 +71,11 @@ export default class FormValidation {
 
   enableValidation() {
     this._setEventListeners();
+    // this._inputList.forEach((inputElement) => {
+    //   inputElement.value = "";
+    // });
     this._formElement.addEventListener("submit", (evt) => {
-      evt.preventDefault();
+    evt.preventDefault();
     });
   }
 }

@@ -99,6 +99,16 @@ function handleCardDelete(cardId) {
   });
 }
 
+// Função de validação dos inputs do perfil
+const config = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__save-button",
+  inactiveButtonClass: ".popup__save-button",
+  inputErrorClass: ".about-error",
+  errorClass: "error-message",
+};
+
 //edit profile
 const editButton = document.querySelector(".profile__edit-button");
 const editForm = document.querySelector(".popup-edit__form");
@@ -125,23 +135,11 @@ const closePopupAvatar = document.querySelector(
 );
 const avatarForm = document.querySelector(".popup-edit-avatar__form");
 
-// Função de validação dos inputs do perfil
-const config = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__save-button",
-  inactiveButtonClass: ".popup__save-button",
-  inputErrorClass: ".about-error",
-  errorClass: "error-message",
-};
 const editFormValidation = new FormValidation(config, editForm);
-editFormValidation.enableValidation();
 
 const editCard = new FormValidation(config, addForm);
-editCard.enableValidation();
 
 const editAvatarFormValidation = new FormValidation(config, avatarForm);
-editAvatarFormValidation.enableValidation();
 
 const popupEditProfile = new PopupWithForm(
   ".popup-edit",
@@ -166,12 +164,14 @@ closePopupAvatar.addEventListener("click", function () {
 
 openPopupAvatar.addEventListener("click", function () {
   popupEditAvatar.open();
+  editAvatarFormValidation.enableValidation();
 });
 
 editButton.addEventListener("click", function () {
   popupEditProfile.open();
   inputName.value = profileName.textContent;
   inputAbout.value = profileAbout.textContent;
+  editFormValidation.enableValidation();
 });
 
 function submitFormCard(inputs) {
@@ -221,6 +221,7 @@ popupAddCard.setEventListeners();
 
 addCardButton.addEventListener("click", function () {
   popupAddCard.open();
+  editCard.enableValidation();
   addForm.reset();
 });
 
